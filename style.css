@@ -19,7 +19,7 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
 	background: #6649b8;
 }
-h2 {
+/* h2 {
 	font-size: 2.4rem;
 }
 h3 {
@@ -27,10 +27,15 @@ h3 {
 }
 p,
 li,
-a {
+a { 
 	font-size: 1.6rem;
+} */
+ul,
+li {
+	margin-left: 0.25em;
 }
 
+.SECTION,
 section {
 	margin: 1%;
 	padding: 2%;

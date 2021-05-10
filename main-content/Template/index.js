@@ -2,9 +2,9 @@ const SECTION = 'SECTION';
 const SECTION_EMPTY = 'SECTION_EMPTY';
 const SECTION_DEFAULT = 'SECTION_DEFAULT';
 
-const CARD = 'CARD';
-const CARD_EMPTY = 'CARD_EMPTY';
-const CARD_DEFAULT = 'CARD_DEFAULT';
+const MAIN_CONTAINER = 'MAIN_CONTAINER';
+const MAIN_CONTAINER_EMPTY = 'MAIN_CONTAINER_EMPTY';
+const MAIN_CONTAINER_DEFAULT = 'MAIN_CONTAINER_DEFAULT';
 
 const ELEMENT = 'ELEMENT';
 const ELEMENT_EMPTY = 'ELEMENT_EMPTY';
@@ -17,18 +17,18 @@ const TemplateSection = {
 	name: 'Template',
 	path: 'Testing',
 	description: '',
-	url: '',
+	url: '', 
 	classes: ['main-section', 'Site'],
 	items: [],
 };
 
 TemplateSection.items.push({
-	mainType: CARD,
-	types: [CARD_DEFAULT],
+	mainType: MAIN_CONTAINER,
+	types: [MAIN_CONTAINER_DEFAULT],
 	name: 'Testing || && <>',
 	path: 'Testing',
 	description: '',
-	classes: [CARD_DEFAULT, 'spinningBackground1'],
+	classes: [MAIN_CONTAINER_DEFAULT, 'spinningBackground1'],
 	items: [
 		{
 			mainType: ELEMENT,
@@ -37,8 +37,41 @@ TemplateSection.items.push({
 			// path: '1',
 			// fileName: 'index.html',
 			description: '1',
-			difficulty: '',
 			tech: ['HTML', 'CSS', 'JavaScript'],
+		},
+		{
+			mainType: ELEMENT,
+			types: [ELEMENT_DEFAULT],
+			name: '2 @#$%^&',
+			// path: '1',
+			// fileName: 'index.html',
+			description: '2',
+			tech: ['HTML', 'CSS', 'JavaScript'],
+		},
+		{
+			mainType: ELEMENT,
+			types: [ELEMENT_LIST],
+			name: '3 @#$%^&',
+			path: '3',
+			description: '3',
+			tech: ['HTML', 'CSS', 'JavaScript'],
+			items: [
+				{
+					mainType: ELEMENT,
+					types: [ELEMENT_DEFAULT],
+					name: '3.1 @#$%^&',
+					description: '3.1',
+					tech: ['HTML', 'CSS', 'JavaScript'],
+				},
+				{
+					mainType: ELEMENT,
+					types: [ELEMENT_EMPTY],
+					name: '',
+					// path: '',
+					description: '',
+					tech: [],
+				},
+			]
 		},
 		{
 			mainType: ELEMENT,
@@ -46,25 +79,23 @@ TemplateSection.items.push({
 			name: '',
 			// path: '',
 			description: '',
-			difficulty: '',
 			tech: [],
 		},
 	],
 });
 
 TemplateSection.items.push({
-	mainType: CARD,
-	types: [CARD_EMPTY],
+	mainType: MAIN_CONTAINER,
+	types: [MAIN_CONTAINER_EMPTY],
 	name: '',
 	description: '',
-	classes: ['CARD_EMPTY', 'spinningBackground1'],
+	classes: ['MAIN_CONTAINER_EMPTY', 'spinningBackground1'],
 	items: [
 		{
 			mainType: ELEMENT,
 			types: [ELEMENT_EMPTY],
 			name: '',
 			description: '',
-			difficulty: '',
 			tech: [],
 		},
 	],

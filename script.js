@@ -2,29 +2,68 @@ const itemsBuilder = ({ items = [], path }) => {
 	let htmlTemplate = '';
 
 	items.forEach((item) => {
-		if (item.mainType.includes(CARD)) {
-			if (item.types.includes(CARD_DEFAULT)) {
+		if (item.mainType.includes(MAIN_CONTAINER)) {
+			if (item.types.includes(MAIN_CONTAINER_DEFAULT)) {
 				htmlTemplate += `
-        <h3 class='${CARD} ${CARD_DEFAULT} ${CARD}__header'>
-          ${item.name}
+        <h3 class='${item.mainType} ${item.types.join(' ')} ${MAIN_CONTAINER}__HEADER'>
+          <strong>
+          	${item.name}
+          </strong>
         </h3>
-        <div class='${CARD}__body'>`;
+        <ul class='${MAIN_CONTAINER}__BODY'>`;
 
 				htmlTemplate += itemsBuilder({
 					items: item.items,
 					path: `${path}/${item.path}`,
 				});
 
-				htmlTemplate += '</div>';
+				htmlTemplate += '</ul>';
+			} else if (item.types.includes(MAIN_CONTAINER_EMPTY)) {
+				htmlTemplate += `
+        <h3 class='${item.mainType} ${item.types.join(' ')} ${MAIN_CONTAINER}__HEADER'>
+          <strong>
+						empty${item.name ? ` - ${item.name}` : ""}
+					</strong>
+        </h3>
+        <ul class='${MAIN_CONTAINER}__BODY'>`;
+
+				htmlTemplate += itemsBuilder({
+					items: item.items,
+				});
+
+				htmlTemplate += '</ul>';
 			}
 		} else if (item.mainType.includes(ELEMENT)) {
 			if (item.types.includes(ELEMENT_DEFAULT)) {
 				htmlTemplate += `
-        <a class='${ELEMENT} ${ELEMENT_DEFAULT}' href="${path}/${
-					item.path ? item.path : 'index.html'
-				}" target="_blank">
-            ${item.name}
-        </a>
+				<li class='${item.mainType} ${item.types.join(' ')}}'>
+					<a href='${path}/${
+						item.path ? item.path : 'index.html'
+					}' target='_blank'>
+							${item.name}
+					</a>
+				</li>
+      `;
+			} else if (item.types.includes(ELEMENT_LIST)) {
+				htmlTemplate += `
+        <h4 class='${item.mainType} ${item.types.join(' ')} ${ELEMENT}__HEADER'>
+          ${item.name}
+        </h4>
+        <ul class='${ELEMENT_LIST}__BODY'>`;
+
+				htmlTemplate += itemsBuilder({
+					items: item.items,
+					path: `${path}/${item.path}`,
+				});
+
+				htmlTemplate += '</ul>';
+			} else if (item.types.includes(ELEMENT_EMPTY)) {
+				htmlTemplate += `
+				<li class='${item.mainType} ${item.types.join(' ')}'>
+          <em>
+						none${item.name ? ` - ${item.name}` : ""}
+          </em>
+				</li>
       `;
 			}
 		}
@@ -38,15 +77,18 @@ const sectionBuilder = (section) => {
 
 	if (section.types.includes(SECTION_DEFAULT)) {
 		htmlTemplate += `
-    <section class="${SECTION} ${SECTION_DEFAULT} ${section.classes.join(
+    <section class='${section.mainType} ${section.types.join(' ')} ${section.classes.join(
 			' '
-		)}"><h2 class='${SECTION}__header'>${section.name}</h2>
-    <div class='${SECTION}__body'>'`;
+		)}'>
+		<strong>
+			<h2 class='${SECTION}__HEADER'>${section.name}</h2>
+		</strong>
+    <div class='${SECTION}__BODY spinningBackground1'>`;
 		htmlTemplate += itemsBuilder({
 			items: section.items,
 			path: section.path,
 		});
-		htmlTemplate += `</div></section">`;
+		htmlTemplate += `</div></section>`;
 	}
 
 	const mainElement = document.createElement('main');
