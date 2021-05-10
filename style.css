@@ -1,7 +1,7 @@
 /*----------------------------*/
 /* */
 /*----------------------------*/
-body {
+/* body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,17 +19,7 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
 	background: #6649b8;
 }
-/* h2 {
-	font-size: 2.4rem;
-}
-h3 {
-	font-size: 1.872rem;
-}
-p,
-li,
-a { 
-	font-size: 1.6rem;
-} */
+
 ul,
 li {
 	margin-left: 0.25em;
@@ -97,11 +87,10 @@ ol {
 	font-size: 2rem;
 	top: 100px;
 	left: 50px;
-}
+} */
 
 .spinningBackground1 {
-	/*animation: spinningBackground1Animation 10s infinite alternate;*/
-}
-
-@keyframes spinningBackground1Animation {
+  width: 10rem;
+  height: 10rem;
+	background: hsl(100, 100%, 50%);
 }

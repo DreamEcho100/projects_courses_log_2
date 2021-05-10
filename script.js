@@ -1,3 +1,4 @@
+/*
 const itemsBuilder = ({ items = [], path }) => {
 	let htmlTemplate = '';
 
@@ -97,3 +98,105 @@ const sectionBuilder = (section) => {
 };
 
 sectionBuilder(TemplateSection);
+*/
+
+const list = [];
+const rounds = [1, -1, 1];
+
+for(let i = 0; i < rounds.length; i++) {
+  const deg = 360 * rounds[i];
+  let startPos = parseFloat(list[list.length -1] ? list[list.length -1] : 0);
+  let endPos = deg + startPos;
+  if(rounds[i] > 0) {
+    while (startPos < endPos) {
+      startPos += Math.random();
+      list.push(`hsl(${Math.floor(startPos)}, 100%, 50%)`);
+    }
+  } else if (rounds[i] < 0) {
+    while (startPos > endPos) {
+      startPos -= Math.random();
+      list.push(`hsl(${Math.floor(startPos)}, 100%, 50%)`);
+    }
+  }
+}
+
+class hslArray {
+	constructor(obj) {
+		this.array = [];
+		this.rounds = obj.rounds;
+		this.startPos = obj.startPos;
+		this.arrayHandler();
+	}
+
+	arrayHandler = () => {
+		let i;
+		const rounds = this.rounds;
+		let deg;
+		let startPos = this.startPos;
+		const array = this.array;
+		let endPos;
+		
+		for(i = 0; i < rounds.length; i++) {
+			deg = 360 * rounds[i];
+			startPos = parseFloat(array[array.length -1] ? array[array.length -1] : this.startPos);
+			endPos = deg + startPos;
+			if(rounds[i] > 0) {
+				while (startPos < endPos) {
+					startPos += Math.random();
+					array.push(`hsl(${(startPos).toFixed(2)}, 100%, 50%)`);
+				}
+			} else if (rounds[i] < 0) {
+				while (startPos > endPos) {
+					startPos -= Math.random();
+					array.push(`hsl(${(startPos).toFixed(2)}, 100%, 50%)`);
+				}
+			}
+		}
+	}
+}
+
+class spinningBackground {
+	constructor(arrayOfhslArray) {
+		this.array = [];
+		this.arrayOfhslArray = arrayOfhslArray;
+		this.length = Math.min(...this.arrayOfhslArray.map(obj => obj.array.length));
+
+		this.backgroundImageList();
+	}
+	
+	backgroundImageList = () => {
+		let i;
+		const length = this.length
+		const arrayOfhslArray = this.arrayOfhslArray;
+		let backgroundImagString = '';
+
+			for(i = 0; i < length; i++) {
+			backgroundImagString = '';
+				backgroundImagString = 'linear-gradient(45deg,';
+
+				arrayOfhslArray.forEach((item, index) => {
+					if(index === arrayOfhslArray.length - 1) {
+						backgroundImagString += ` ${item.array[i]}`;
+						return;
+					}
+					
+					backgroundImagString += ` ${item.array[i]}, `;
+				});
+				
+				backgroundImagString += ')';
+				
+				this.array.push(backgroundImagString);
+			}
+		
+	}
+}
+
+const spinningBackground1 = new spinningBackground(
+	[
+		new hslArray({rounds: [1.25, -1.5, 1.5, -1.25], startPos: 0}),
+		new hslArray({rounds: [1.5, -1, 1.25, -0.5], startPos: 180}),
+		new hslArray({rounds: [-1.5, 1.5, -1.25, 0.75], startPos: -180}),
+	]
+);
+
+console.table(spinningBackground1);
