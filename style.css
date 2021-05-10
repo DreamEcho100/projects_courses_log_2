@@ -1,0 +1,102 @@
+/*----------------------------*/
+/* */
+/*----------------------------*/
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	--main-bg-color: black;
+	--main-font-color: black;
+	line-height: 1.2;
+}
+body::-webkit-scrollbar {
+	width: calc(1.5rem + 0.2vw);
+}
+
+body::-webkit-scrollbar-track {
+	background: #1e1e24;
+}
+body::-webkit-scrollbar-thumb {
+	background: #6649b8;
+}
+h2 {
+	font-size: 2.4rem;
+}
+h3 {
+	font-size: 1.872rem;
+}
+p,
+li,
+a {
+	font-size: 1.6rem;
+}
+
+section {
+	margin: 1%;
+	padding: 2%;
+	border: 5px solid black;
+	background-image: linear-gradient(
+		-90deg,
+		black,
+		#823030,
+		black,
+		#4a4a01,
+		black
+	);
+	transition: all 3s;
+}
+
+.main-section {
+	width: 80vw;
+}
+
+.main-section h2 {
+	color: chocolate;
+}
+
+.main-section h3,
+.main-section h4,
+.main-section h5 {
+	color: darkslategray;
+}
+
+ol {
+	padding: 0.05em 0.5em;
+}
+
+.subElemContainngInfo {
+	background-image: linear-gradient(
+		-180deg,
+		black,
+		#823030,
+		black,
+		#4a4a01,
+		black
+	);
+	cursor: help;
+	color: blue;
+	background-color: #ddd;
+	border-color: coral;
+	padding: 0.25rem 1rem;
+	border-radius: 20rem;
+}
+
+.tooltip-output {
+	display: none;
+	position: fixed;
+	z-index: 999;
+	border: 1px solid red;
+	background-color: black;
+	color: white;
+	padding: 0.5rem;
+	font-size: 2rem;
+	top: 100px;
+	left: 50px;
+}
+
+.spinningBackground1 {
+	/*animation: spinningBackground1Animation 10s infinite alternate;*/
+}
+
+@keyframes spinningBackground1Animation {
+}
