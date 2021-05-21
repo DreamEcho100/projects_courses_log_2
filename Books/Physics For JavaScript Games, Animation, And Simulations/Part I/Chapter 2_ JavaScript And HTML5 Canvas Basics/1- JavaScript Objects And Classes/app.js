@@ -39,12 +39,26 @@ Ball.prototype.onEachStep = function () {
 const ball = new Ball(20, '#00f');
 const animate = () => {
 	let i;
+	let animateId = undefined;
+	let isCancelled = false;
+	canvas.addEventListener('mouseenter', () => {
+		!isCancelled ? cancelAnimationFrame(animateId) : null;
+		isCancelled = true;
+	});
+	canvas.addEventListener('mousemove', () => {
+		!isCancelled ? cancelAnimationFrame(animateId) : null;
+		isCancelled = true;
+	});
+	canvas.addEventListener('mouseleave', () => {
+		isCancelled ? playAnimation() : null;
+		isCancelled = false;
+	});
 	const playAnimation = () => {
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		for (i = 0; i < numberOfBalls; i++) {
 			balls[i].onEachStep();
 		}
-		requestAnimationFrame(playAnimation);
+		animateId = requestAnimationFrame(playAnimation);
 	};
 	playAnimation();
 };

@@ -1,7 +1,7 @@
 /*----------------------------*/
 /* */
 /*----------------------------*/
-/* body {
+body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -18,11 +18,6 @@ body::-webkit-scrollbar-track {
 }
 body::-webkit-scrollbar-thumb {
 	background: #6649b8;
-}
-
-ul,
-li {
-	margin-left: 0.25em;
 }
 
 .SECTION,
@@ -46,17 +41,22 @@ section {
 }
 
 .main-section h2 {
-	color: chocolate;
+	color: #000000b6;
 }
 
 .main-section h3,
 .main-section h4,
 .main-section h5 {
-	color: darkslategray;
+	color: rgba(14, 22, 22, 0.74);
 }
 
-ol {
-	padding: 0.05em 0.5em;
+ol,
+ul {
+	padding: 0 0 0em 0.5em;
+}
+
+li {
+	padding: 0 0 0em 0.75em;
 }
 
 .subElemContainngInfo {
@@ -87,10 +87,4 @@ ol {
 	font-size: 2rem;
 	top: 100px;
 	left: 50px;
-} */
-
-.spinningBackground1 {
-  width: 10rem;
-  height: 10rem;
-	background: hsl(100, 100%, 50%);
 }

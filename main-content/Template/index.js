@@ -17,7 +17,7 @@ const TemplateSection = {
 	name: 'Template',
 	path: 'Testing',
 	description: '',
-	url: '', 
+	url: '',
 	classes: ['main-section', 'Site'],
 	items: [],
 };
@@ -71,7 +71,7 @@ TemplateSection.items.push({
 					description: '',
 					tech: [],
 				},
-			]
+			],
 		},
 		{
 			mainType: ELEMENT,
