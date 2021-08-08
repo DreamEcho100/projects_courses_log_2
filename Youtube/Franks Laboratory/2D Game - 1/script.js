@@ -131,7 +131,7 @@ class Explosion {
 	};
 }
 
-window.addEventListener('click', (event) => {
+document.body.addEventListener('click', (event) => {
 	const detectPixelColor = collisionCanvasContext.getImageData(
 		event.x,
 		event.y,
