@@ -141,6 +141,8 @@ document.body.addEventListener('DOMContentLoaded', () => {
 		);
 
 		const pixelColor = detectPixelColor.data;
+
+		console.log('pixelColor', pixelColor);
 		ravens.forEach((object) => {
 			if (
 				object.randomColor[0] === pixelColor[0] &&
