@@ -1,4 +1,3 @@
-// document.body.addEventListener('DOMContentLoaded', () => {
 const canvas = document.getElementById('canvas1');
 const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -132,7 +131,7 @@ class Explosion {
 	};
 }
 
-document.body.addEventListener('click', (event) => {
+window.addEventListener('click', (event) => {
 	const detectPixelColor = collisionCanvasContext.getImageData(
 		event.x,
 		event.y,
@@ -214,6 +213,7 @@ const animate = (timestamp) => {
 	}
 
 	drawScore();
+	drawLives();
 
 	// [...ravens].forEach((object) => object.update());
 	// [...ravens].forEach((object) => object.draw());
@@ -225,8 +225,6 @@ const animate = (timestamp) => {
 	ravens = ravens.filter((object) => !object.markForDeletion);
 	explosions = explosions.filter((object) => !object.markForDeletion);
 
-	drawLives();
-
 	if (lives <= 0) {
 		drawGameOver();
 		return cancelAnimationFrame(animateId);
@@ -235,4 +233,3 @@ const animate = (timestamp) => {
 };
 
 animate(0);
-// });
