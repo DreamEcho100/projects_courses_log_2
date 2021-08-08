@@ -95,7 +95,7 @@ const sectionBuilder = (section) => {
 
 	const mainElement = document.createElement('main');
 	mainElement.innerHTML = htmlTemplate;
-	document.body.prepend(mainElement);
+	document.body.append(mainElement);
 };
 
 class hslArray {
@@ -251,6 +251,7 @@ class spinningBackground {
 }
 
 sectionBuilder(BooksSection);
+sectionBuilder(YoutubeSection);
 
 const spinningBackground1 = new spinningBackground({
 	arrayOfhslArries: [
