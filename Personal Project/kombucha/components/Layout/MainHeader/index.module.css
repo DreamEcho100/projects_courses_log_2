@@ -1,0 +1,147 @@
+.header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5em 1em;
+}
+
+.logo {
+	font-weight: bolder;
+}
+
+.navOnBiggerScreens {
+	margin-left: auto;
+	margin-right: 1em;
+	width: 35%;
+	min-width: fit-content;
+}
+
+body nav.navOnBiggerScreens ul {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+body nav.navOnBiggerScreens ul li {
+	margin: 0 0.5em;
+}
+
+.showSideNavButton {
+	display: none;
+}
+
+.sideMenu {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	overflow-y: auto;
+	overflow-x: hidden;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+	transition-delay: 0.4s;
+}
+
+.sideMenu ul {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	margin-right: auto;
+	transform: translateX(-100%);
+	height: 100%;
+	padding: 0.5em;
+	background-color: hsl(245deg 12% 47%);
+	color: #fff;
+	transition: transform 0.4s ease-in;
+	transition-delay: 0.4s;
+}
+
+.sideMenu ul li {
+	padding: 1em;
+	/* border-radius: 0.5rem; */
+	border-radius: 1rem 24rem / 1rem;
+	transition: background-color 0.3s ease-in;
+}
+.sideMenu ul li:hover {
+	background-color: hsl(245deg 12% 36%);
+}
+.sideMenu ul li:focus-within {
+	background-color: hsl(245deg 12% 20%);
+}
+
+.sideMenu.active {
+	background-color: rgba(0, 0, 0, 0.2);
+	opacity: 1;
+	pointer-events: unset;
+	/* transition-delay: 0.4s; */
+}
+
+.sideMenu.active ul {
+	transform: translateX(0%);
+	/* transition-delay: 0s; */
+}
+
+.sideMenu.inactive {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.8s ease-in-out;
+	transition-delay: 0.4s;
+}
+
+.items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.items > button {
+	width: 3rem;
+	height: 3rem;
+	color: hsl(245deg 12% 36%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+button.menuToggleButton {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.menuToggleButton span {
+	background-color: hsl(245deg 12% 47%);
+	width: 100%;
+	height: 20%;
+	transition: transform 0.6s cubic-bezier(0.755, 0.05, 0.855, 0.06),
+		opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
+}
+
+.menuToggleButton.active span:first-child {
+	transform: translateY(160%) rotate(-45deg);
+}
+.menuToggleButton.active span:nth-child(2) {
+	opacity: 0;
+}
+.menuToggleButton.active span:last-child {
+	transform: translateY(-160%) rotate(45deg);
+}
+
+@media screen and (max-width: 700px) {
+	.navOnBiggerScreens {
+		display: none;
+	}
+	.showSideNavButton {
+		display: block;
+	}
+}
