@@ -1,0 +1,13 @@
+.header {
+	width: 100%;
+	text-align: center;
+}
+
+.header h2 {
+	color: hsl(245deg 12% 36%);
+	font-size: var(--size-26);
+}
+
+.header p {
+	margin: 1em auto;
+}

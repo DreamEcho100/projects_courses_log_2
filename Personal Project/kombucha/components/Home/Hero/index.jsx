@@ -1,5 +1,7 @@
 import classes from './index.module.css';
 
+import Button from '@/components/UI/V1/Button';
+
 const Hero = () => {
 	return (
 		<section className={classes.Hero}>
@@ -34,7 +36,7 @@ const Hero = () => {
 						<div className={classes.formControl}>
 							<p>$ 89.99</p>
 						</div>
-						<button>BUY NOW</button>
+						<Button>BUY NOW</Button>
 					</form>
 				</section>
 				<footer>
