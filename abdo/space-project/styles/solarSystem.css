@@ -3,6 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	background: rgb(0 0 0 / 78%);
 }
 
 .card {
@@ -46,11 +47,17 @@
 
 .card:hover .card-header,
 .card:hover .card-body,
-.card:hover .card-footer {
+.card:hover .card-footer,
+/**/
+.card:focus .card-header,
+.card:focus .card-body,
+.card:focus .card-footer {
 	opacity: 1;
 }
 
-.card:hover .card-image {
+.card:hover .card-image,
+/**/
+.card:focus .card-image {
 	animation: scalePlanet 30s ease-in-out infinite alternate;
 }
 
