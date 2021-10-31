@@ -22,7 +22,7 @@
 		{
 			"settings": {
 				"reverseOnBiggerScreen": true,
-				"videHolderSpanColor": "#fe6647"
+				"videHolderSpanColor": "#ca927a"
 			},
 			"textHolder": {
 				"header": { "h2Text": "Blackberry, Raspberry & Elder Rower" },
@@ -41,7 +41,7 @@
 		{
 			"settings": {
 				"reverseOnBiggerScreen": false,
-				"videHolderSpanColor": "#fe6647"
+				"videHolderSpanColor": "#6d6b7e"
 			},
 			"textHolder": {
 				"header": { "h2Text": "Peach, mint & Lemon Balm" },

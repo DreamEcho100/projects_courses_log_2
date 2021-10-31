@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/solarSystem.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Project</title>
+</head>
+
+<body>
+    
+    <header class="main-header">
+        <nav>
+            <div class="brand">
+                <a href="#">
+                    <img src="./img/logo.png" alt="">
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="#" class="active">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Update</a>
+                    <a href="#">Career</a>
+                </div>
+                <div class="search">
+                    <div>
+                        <img src="./img/search.png" alt="">
+                        <input type="text" placeholder="search">
+                    </div>
+                </div>
+        </nav>
+        <div class="center">
+            <h1>Welcome To The Journey Of Space</h1>
+        </div>
+       
+    </header>
+
+    <main>
+      <section id='solar-system-plants-cards-holder'></section>
+    </main>
+
+    <script src='scripts/solarSystemData.js' defer></script>
+    <script src="scripts/buildSolarSystemSection.js" defer></script>
+    <script src="scripts/js.js" defer></script>
+</body>
+
+</html>
