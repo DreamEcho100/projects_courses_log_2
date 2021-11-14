@@ -60,7 +60,7 @@ function build() {
 
 		let useful_link;
 		for (useful_link of planet.useful_links) {
-			cardUsefulLinks.innerHTML += `<a href='${useful_link.href}' title='${useful_link.title}" class='link'>${useful_link.title}</a>`;
+			cardUsefulLinks.innerHTML += `<a href='${useful_link.href}' title='${useful_link.title}' class='link'>${useful_link.title}</a>`;
 		}
 
 		cardFooter.append(cardUsefulLinks);
