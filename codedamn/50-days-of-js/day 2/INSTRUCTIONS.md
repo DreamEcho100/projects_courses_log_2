@@ -1,4 +1,4 @@
-# INSTRUCTIONS
+# INSTRUCTIONS&CHALLENGES
 
 ## Write a program to reverse a string
 
@@ -6,10 +6,10 @@
 
 - String can also be reversed by converting it to array, then joining it after reversing.
 
-## CHALLENGES (0/3 DONE)
+## (3/3 DONE)
 
-- reverseAString("JavaScript is awesome") should return "emosewa si tpircSavaJ".
+- [x] reverseAString("JavaScript is awesome") should return "emosewa si tpircSavaJ".
 
-- reverseAString("Peter Parker is Spiderman") should return "namredipS si rekraP reteP".
+- [x] reverseAString("Peter Parker is Spiderman") should return "namredipS si rekraP reteP".
 
-- reverseAString("codedamn") should return "nmadedoc".
+- [x] reverseAString("codedamn") should return "nmadedoc".

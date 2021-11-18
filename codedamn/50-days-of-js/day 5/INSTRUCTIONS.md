@@ -1,4 +1,4 @@
-# INSTRUCTIONS
+# INSTRUCTIONS&CHALLENGES
 
 ## Write a function which accepts a string argument and returns the count of characters between the first and last character 'X'
 
@@ -6,12 +6,12 @@
 
 - If the match is not found, these methods return -1digit.
 
-## CHALLENGES (0/4 DONE)
+## (4/4 DONE)
 
-- getTheGapX('XeroX') returns 4.
+- [x] getTheGapX('XeroX') returns 4.
 
-- getTheGapX('Xamarin') returns 0.
+- [x] getTheGapX('Xamarin') returns 0.
 
-- getTheGapX('JavaScript') returns -1.
+- [x] getTheGapX('JavaScript') returns -1.
 
-- getTheGapX("F(X) !== G(X) !== F(X)") returns 18.
+- [x] getTheGapX("F(X) !== G(X) !== F(X)") returns 18.

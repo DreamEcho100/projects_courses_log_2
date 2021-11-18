@@ -1,4 +1,4 @@
-# INSTRUCTIONS
+# INSTRUCTIONS&CHALLENGES
 
 ## Write a program to reverse a given integer number
 
@@ -6,10 +6,10 @@
 
 - A simple approach to reverse a number could also be to convert it in to a string and then reverse it.
 
-## CHALLENGES (0/3 DONE)
+## (3/3 DONE)
 
-- reverseGivenInteger(3849) returns 9483.
+- [x] reverseGivenInteger(3849) returns 9483.
 
-- reverseGivenInteger(2222) returns 2222.
+- [x] reverseGivenInteger(2222) returns 2222.
 
-- reverseGivenInteger(1002) returns 2001.
+- [x] reverseGivenInteger(1002) returns 2001.
