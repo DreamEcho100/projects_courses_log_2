@@ -6,8 +6,8 @@
 
 ## CHALLENGES (0/3 DONE)
 
-- [ ] removeArrayElement("money") returns the array without the money object.
+- [x] removeArrayElement("money") returns the array without the money object.
 
-- [ ] removeArrayElement("id") returns the array without the id object.
+- [x] removeArrayElement("id") returns the array without the id object.
 
-- [ ] removeArrayElement("cStatus") returns the array without the cStatus object.
+- [x] removeArrayElement("cStatus") returns the array without the cStatus object.
