@@ -42,6 +42,6 @@
 
 ## CHALLENGES (0/2 DONE)
 
-- [ ] 14 becomes "fourteen".
+- [x] 14 becomes "fourteen".
 
-- [ ] 1323 becomes "one thousand three hundred twenty-three".
+- [x] 1323 becomes "one thousand three hundred twenty-three".
