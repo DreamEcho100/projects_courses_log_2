@@ -1,5 +1,16 @@
-const spaceAge = (seconds) => {
-	const planetsOrbitalPeriod = {
+type PlanetsPeriod = {
+	Mercury: number,
+	Venus: number,
+	Earth: number,
+	Mars: number,
+	Jupiter: number,
+	Saturn: number,
+	Uranus: number,
+	Neptune: number,
+};
+	
+const spaceAge = (seconds): PlanetsPeriod => {
+	const planetsOrbitalPeriod: PlanetsPeriod = {
 		Mercury: 0.2408467,
 		Venus: 0.61519726,
 		Earth: 1.0,

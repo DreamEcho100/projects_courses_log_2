@@ -37,7 +37,7 @@ THE VALUE OF EACH PROPERTY SHOULD BE A NUMBER AND SHOULD HAVE MAXIMUM 2 DIGITS A
 
 ## CHALLENGES (0/2 DONE)
 
-- [ ] function spaceAge(436575687) should return:
+- [x] function spaceAge(436575687) should return:
 
 ```js
 {
@@ -52,7 +52,7 @@ THE VALUE OF EACH PROPERTY SHOULD BE A NUMBER AND SHOULD HAVE MAXIMUM 2 DIGITS A
 }
 ```
 
-- [ ] spaceAge(65965561) should return:
+- [x] spaceAge(65965561) should return:
 
 ```js
 {
