@@ -25,6 +25,25 @@ const YoutubeSection = {
 YoutubeSection.items.push({
 	mainType: MAIN_CONTAINER,
 	types: [MAIN_CONTAINER_DEFAULT],
+	name: 'Conor Bailey',
+	path: 'Conor Bailey',
+	description: '',
+	classes: [MAIN_CONTAINER_DEFAULT, 'spinningBackground1'],
+	items: [
+		{
+			mainType: ELEMENT,
+			types: [ELEMENT_DEFAULT],
+			name: 'Vanilla JavaScript: Create A Draggable Slider',
+			path: 'Vanilla JavaScript - Create A Draggable Slider',
+			description: '',
+			classes: [ELEMENT_DEFAULT],
+		},
+	],
+});
+
+YoutubeSection.items.push({
+	mainType: MAIN_CONTAINER,
+	types: [MAIN_CONTAINER_DEFAULT],
 	name: 'Franks Laboratory',
 	path: 'Franks Laboratory',
 	description: '',
