@@ -1,98 +1,137 @@
 const outerSlider = document.querySelector('.slider');
 const innerSlider = document.querySelector('.slider-inner');
+const sliderMask = document.querySelector('.slider_mask');
 
-let sliderDragAnimationID;
-let isDragging = false;
-let oldXTranslate = 0;
-let currXTranslate = 0;
-let sliderXPos = 0;
-
-let outerSliderCoordination;
-let firstSliderCoordination;
-let lastSliderCoordination;
-
-const touchStart = (event) => {
-	isDragging = true;
-	oldXTranslate = getPositionX(event);
-	outerSlider.style.cursor = 'grabbing';
+const data = {
+	sliderDragAnimationID: 0,
+	isPointing: false,
+	isDragging: false,
+	oldXTranslate: 0,
+	currXTranslate: 0,
+	sliderXPos: 0,
+	outerSliderCoordination: outerSlider.getBoundingClientRect(),
+	innerSliderCoordination: innerSlider.getBoundingClientRect(),
+	firstSliderCoordination: innerSlider.children[0]?.getBoundingClientRect(),
+	lastSliderCoordination:
+		innerSlider.children[
+			innerSlider.children?.length - 1
+		]?.getBoundingClientRect(),
 };
 
-const touchEnd = () => {
-	isDragging = false;
-	outerSlider.style.cursor = 'grab';
-	cancelAnimationFrame(sliderDragAnimationID);
+const touchStart = (event) => {
+	data.isPointing = true;
+	data.oldXTranslate = getPositionX(event);
+};
+
+const touchEnd = (event) => {
+	event.preventDefault();
+
+	if (data.isDragging) {
+		data.isPointing = false;
+		data.isDragging = false;
+		sliderMask.style.pointerEvents = 'none';
+		sliderMask.style.cursor = 'grab';
+		// innerSlider.style.cursor = 'grab';
+		cancelAnimationFrame(data.sliderDragAnimationID);
+	}
 };
 
 const touchMove = (event) => {
 	event.preventDefault();
-	if (!isDragging || checkSliderBoundary(getPositionX(event) - oldXTranslate))
+	if (
+		!data.isPointing ||
+		checkSliderBoundary(getPositionX(event) - data.oldXTranslate)
+	)
 		return;
 
-	currXTranslate = getPositionX(event);
+	data.isDragging = true;
+	sliderMask.style.pointerEvents = 'auto';
+	sliderMask.style.cursor = 'grabbing';
+	// innerSlider.style.cursor = 'grabbing';
 
-	sliderXPos += currXTranslate - oldXTranslate;
+	data.currXTranslate = getPositionX(event);
 
-	sliderDragAnimationID = requestAnimationFrame(sliderDragAnimation);
+	data.sliderXPos += data.currXTranslate - data.oldXTranslate;
 
-	oldXTranslate = currXTranslate;
+	data.sliderDragAnimationID = requestAnimationFrame(sliderDragAnimation);
+
+	data.oldXTranslate = data.currXTranslate;
 };
 
-outerSlider.addEventListener(
-	// 'pointerdown'
-	// 'touchstart'
-	'mousedown',
-	touchStart
-);
-outerSlider.addEventListener(
-	// 'pointerup'
-	// 'touchend'
-	'mouseup',
-	touchEnd
-);
-outerSlider.addEventListener(
-	// 'pointerleave'
-	// 'touchend'
-	'mouseleave',
-	touchEnd
-);
-outerSlider.addEventListener(
-	// 'pointermove'
-	// 'touchmove'
-	'mousemove',
-	touchMove
-);
+outerSlider.addEventListener('mousedown', touchStart);
+outerSlider.addEventListener('mouseup', touchEnd);
+outerSlider.addEventListener('mouseleave', touchEnd);
+outerSlider.addEventListener('mousemove', touchMove);
 
 outerSlider.addEventListener('touchstart', touchStart);
 outerSlider.addEventListener('touchend', touchEnd);
 outerSlider.addEventListener('touchend', touchEnd);
 outerSlider.addEventListener('touchmove', touchMove);
 
+sliderMask.addEventListener('contextmenu', (event) => {
+	event.preventDefault();
+	event.stopPropagation();
+	return false;
+	// if (data.isDragging) {
+	// }
+});
+
+// window.oncontextmenu = (event) => {
+// 	if (data.isDragging) {
+// 		event.preventDefault();
+// 		event.stopPropagation();
+// 		return false;
+// 	}
+// };
+
+// ['contextmenu', 'mouseup', 'click'].forEach((item) => {
+// 	outerSlider.addEventListener(item, (event) => {
+// 		console.log('1', 1);
+// 		console.log('data.isDragging', data.isDragging);
+// 		if (data.isDragging) {
+// 			event.preventDefault();
+// 			event.stopPropagation();
+// 			console.log('2', 2);
+// 			console.log('lol');
+// 			return false;
+// 		}
+// 	});
+// });
+
+// innerSlider.addEventListener('mouseup', () => {
+// 	console.log('data.isDragging', data.isDragging);
+// 	console.log('lol');
+// });
+
 const getPositionX = (event) =>
 	// event.pointerType === 'mouse' ? event.pageX : event.clientX;
 	event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
 
 const checkSliderBoundary = (num) => {
-	outerSliderCoordination = outerSlider.getBoundingClientRect();
+	data.outerSliderCoordination = outerSlider.getBoundingClientRect();
 
 	if (num > 0) {
-		firstSliderCoordination = innerSlider.children[0].getBoundingClientRect();
+		data.firstSliderCoordination =
+			innerSlider.children[0].getBoundingClientRect();
 
 		if (
-			firstSliderCoordination.left +
-				firstSliderCoordination.width * 0.05 +
+			data.firstSliderCoordination.left +
+				data.firstSliderCoordination.width * 0.05 +
 				num >
-			outerSliderCoordination.right
+			data.outerSliderCoordination.right
 		)
 			return true;
 	} else if (num < 0) {
-		lastSliderCoordination =
+		data.lastSliderCoordination =
 			innerSlider.children[
 				innerSlider.children.length - 1
 			].getBoundingClientRect();
 
 		if (
-			lastSliderCoordination.right - lastSliderCoordination.width * 0.05 + num <
-			outerSliderCoordination.left
+			data.lastSliderCoordination.right -
+				data.lastSliderCoordination.width * 0.05 +
+				num <
+			data.outerSliderCoordination.left
 		)
 			return true;
 	}
@@ -102,11 +141,11 @@ const checkSliderBoundary = (num) => {
 
 const sliderDragAnimation = () => {
 	setSliderPosition();
-	if (isDragging) requestAnimationFrame(sliderDragAnimation);
+	if (data.isDragging) requestAnimationFrame(sliderDragAnimation);
 };
 
 const setSliderPosition = () => {
-	innerSlider.style.transform = `translateX(${sliderXPos}px)`;
+	innerSlider.style.transform = `translateX(${data.sliderXPos}px)`;
 };
 
 /*
