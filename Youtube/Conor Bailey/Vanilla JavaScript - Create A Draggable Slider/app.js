@@ -27,13 +27,13 @@ const touchEnd = (event) => {
 	event.preventDefault();
 
 	if (data.isDragging) {
-		data.isPointing = false;
 		data.isDragging = false;
 		sliderMask.style.pointerEvents = 'none';
 		sliderMask.style.cursor = 'grab';
 		// innerSlider.style.cursor = 'grab';
 		cancelAnimationFrame(data.sliderDragAnimationID);
 	}
+	data.isPointing = false;
 };
 
 const touchMove = (event) => {
