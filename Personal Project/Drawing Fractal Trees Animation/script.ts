@@ -20,7 +20,7 @@ type TDrawTree = ({
 	curve: number;
 	curve2: number;
 	shapeLengthLimit: number;
-}) => void;
+}) => Promise<void>;
 
 const generateRandomTreeBtn = document.getElementById('generate-tree-btn');
 const canvas = <HTMLCanvasElement>document.getElementById('canvas1');
@@ -32,7 +32,7 @@ if (context) {
 canvas.width = 800;
 canvas.height = 500;
 
-const drawTree: TDrawTree = ({
+const xdrawTree: TDrawTree = async ({
 	startX,
 	startY,
 	shapeLength,
@@ -60,23 +60,25 @@ const drawTree: TDrawTree = ({
 	context.moveTo(0, 0);
 
 	if (angle > 0) {
-		context.bezierCurveTo(
-			20,
-			-shapeLength / 2,
-			20,
-			-shapeLength,
-			0,
-			-shapeLength /* * 1.12*/
-		);
+		// context.bezierCurveTo(
+		// 	20,
+		// 	-shapeLength / 2,
+		// 	20,
+		// 	-shapeLength,
+		// 	0,
+		// 	-shapeLength /* * 1.12*/
+		// );
+		context.lineTo(0, -shapeLength);
 	} else {
-		context.bezierCurveTo(
-			20,
-			-shapeLength / 2,
-			20,
-			-shapeLength,
-			0,
-			-shapeLength /* * 1.12*/
-		);
+		// context.bezierCurveTo(
+		// 	20,
+		// 	-shapeLength / 2,
+		// 	20,
+		// 	-shapeLength,
+		// 	0,
+		// 	-shapeLength /* * 1.12*/
+		// );
+		context.lineTo(0, -shapeLength);
 	}
 
 	context.stroke();
@@ -92,7 +94,7 @@ const drawTree: TDrawTree = ({
 	}
 	curve = Math.random() * 10 + 10;
 
-	drawTree({
+	await drawTree({
 		startX: 0,
 		startY: -shapeLength,
 		shapeLength: shapeLength * 0.75,
@@ -104,7 +106,7 @@ const drawTree: TDrawTree = ({
 		curve2,
 		shapeLengthLimit,
 	});
-	drawTree({
+	await drawTree({
 		startX: 0,
 		startY: -shapeLength,
 		shapeLength: shapeLength * 0.75,
@@ -118,6 +120,99 @@ const drawTree: TDrawTree = ({
 	});
 
 	context.restore();
+};
+const drawTree: TDrawTree = async ({
+	startX,
+	startY,
+	shapeLength,
+	angle,
+	branchWidth,
+	color1,
+	color2,
+	curve,
+	curve2,
+	shapeLengthLimit,
+}) => {
+	if (!context) return;
+
+	context.beginPath();
+	// context.save();
+	context.strokeStyle = color1;
+	context.fillStyle = color2;
+
+	context.shadowBlur = 15;
+	context.shadowColor = 'rgba(0, 0, 0, 0.5)';
+
+	context.lineWidth = branchWidth;
+	context.lineTo(startX, startY);
+	// context.rotate((Math.PI / 180) * angle);
+	// context.moveTo(0, 0);
+	// console.log('startY', startY);
+	startX += Math.cos(angle) * shapeLength;
+	startY += Math.sin(angle) * shapeLength;
+
+	context.lineTo(startX, startY);
+	// if (angle > 0) {
+	// context.bezierCurveTo(
+	// 	startX + 20,
+	// 	startY - shapeLength / 2,
+	// 	startX + 20,
+	// 	startY - shapeLength,
+	// 	startX + 0,
+	// 	startY - shapeLength /* * 1.12*/
+	// );
+	// context.lineTo(startX, startY);
+	// } else {
+	// context.bezierCurveTo(
+	// 	20,
+	// 	-shapeLength / 2,
+	// 	20,
+	// 	-shapeLength,
+	// 	0,
+	// 	-shapeLength /* * 1.12*/
+	// );
+	// context.lineTo(startX, startY);
+	// }
+
+	context.stroke();
+	context.closePath();
+
+	if (shapeLength < shapeLengthLimit) {
+		context.beginPath();
+		context.arc(startX, startY, 15, 0, Math.PI / 2);
+		context.fill();
+		context.closePath();
+		// context.restore();
+		return;
+	}
+	curve = Math.random() * 10 + 10;
+
+	await drawTree({
+		startX,
+		startY,
+		shapeLength: shapeLength * 0.75,
+		angle: angle + curve,
+		branchWidth: branchWidth * 0.65,
+		color1: color1,
+		color2: color2,
+		curve,
+		curve2,
+		shapeLengthLimit,
+	});
+	await drawTree({
+		startX,
+		startY,
+		shapeLength: shapeLength * 0.75,
+		angle: angle - curve,
+		branchWidth: branchWidth * 0.65,
+		color1: color1,
+		color2: color2,
+		curve,
+		curve2,
+		shapeLengthLimit,
+	});
+
+	// context.restore();
 };
 
 const generateRandomTree = () => {
@@ -139,8 +234,8 @@ const generateRandomTree = () => {
 		startX: canvas.width / 2,
 		startY: canvas.height + 20,
 		shapeLength: Math.floor(Math.random() * 20 + 100),
-		angle: 0,
-		branchWidth: Math.random() * 70 + 1,
+		angle: -Math.PI / 2, // 0,
+		branchWidth: 4, // Math.random() * 70 + 1,
 		color1,
 		color2,
 		curve: Math.random() * 10 + 10,
@@ -159,3 +254,37 @@ if (generateRandomTreeBtn)
 // window.addEventListener('resize', () => {
 // 	setTimeout(() => generateRandomTree(), 10);
 // });
+
+/*
+// https://stackoverflow.com/questions/48545808/how-to-delay-drawing-a-recursive-function-with-settimeout
+var canvas = document.getElementById('canvas_main');
+    canvas.width  = 600;
+    canvas.height = 600;
+    var ctx = canvas.getContext('2d');
+
+    function draw(x, y, len, ang, width){
+
+        ctx.lineWidth = width;
+
+        // draw the branch
+        ctx.beginPath();
+        ctx.lineTo(x, y);
+
+        // get the end position
+        x += Math.cos(ang) * len;
+        y += Math.sin(ang) * len;
+
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        if (len > 10) {
+
+          setTimeout(()=>{                
+            draw(x , y , len * 0.8, ang - 0.2, width * 0.8);
+          }, 300 + Math.random() * 100);
+          setTimeout(()=>{
+            draw(x , y , len * 0.8, ang + 0.2, width * 0.8);
+          }, 300 + Math.random() * 100);
+        }
+    }
+		*/
