@@ -1,0 +1,19 @@
+{
+	"name": "projects_courses_log_2",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"homepage": "https://DreamEcho100.github.io/projects_courses_log_2/",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
+	},
+	"devDependencies": {
+		"gh-pages": "^5.0.0",
+		"typescript": "^4.9.3",
+		"vite": "^4.0.0"
+	}
+}
