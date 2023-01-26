@@ -1,5 +1,8 @@
 # projects_courses_log_2
 
+Don't forget to checkout
+Environments / Configure github-pages -> Deployment branches
+
 ## Credits
 
 <https://dev.to/shashannkbawa/deploying-vite-app-to-github-pages-3ane#comment-22iei>
