@@ -36,9 +36,9 @@ export default async ({ mode }: UserConfig): Promise<UserConfigExport> => {
 	}).then((result) => {
 		return defineConfig({
 			build: {
-				rollupOptions: {
-					input: (result as any).input
-				}
+				// rollupOptions: {
+				// 	input: (result as any).input
+				// }
 			},
 			resolve: {
 				alias: [
